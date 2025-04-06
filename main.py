@@ -1,5 +1,4 @@
 """
-
 """
 import numpy as np
 import pandas as pandas
@@ -63,7 +62,7 @@ class RandomForest:
     def predict(self, dataset):
         predictions = []
         for tree in self.trees:
-            pass
+            pass  
 
 
 class Node:
@@ -111,11 +110,13 @@ Data columns (total 18 columns):
  17  death01                    109 non-null    float64
 '''
 
-
-# Builds each tree
-for i in range(n_estimators):
-    break
     
+trees = [None] * n_estimators
+# Builds each tree
+for i in range(n_estimators): 
+    trees[i] = Node(0, train)
+    break
+
 # ---- Graphing Results ----
 plt.plot(X, Y)
 plt.show()
