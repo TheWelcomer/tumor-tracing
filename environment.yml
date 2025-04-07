@@ -1,0 +1,10 @@
+name: TumorTracingEnv
+dependencies:
+- python=3.12
+- anaconda
+- pip
+- numpy
+- pandas
+- matplotlib
+- sqlalchemy
+- torchvision

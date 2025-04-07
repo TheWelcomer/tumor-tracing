@@ -4,6 +4,7 @@ import numpy as np
 import pandas as pandas
 import matplotlib.pyplot as plt
 from sqlalchemy import create_engine
+from collections import Counter
 
 import os
 import math
@@ -58,11 +59,19 @@ class RandomForest:
             # Not sure what to put for root here
             tree = Node(0, boot)
             self.trees.append(tree)
+            
+    def _most_common_label(self, Y):
+        counter = Counter(Y)
+        most_common = counter.most_common(1)[0][0]
+        return most_common
+        
     
-    def predict(self, dataset):
-        predictions = []
-        for tree in self.trees:
-            pass  
+    def predict(self, X):
+        predictions = np.array([tree.predict(X) for tree in self.tree])
+        tree_predictions = np.swapaxes(predictions,0,1)
+        predictions = np.array([self._most_common_label(pred) for pred in tree_predictions])
+        return predictions
+    
 
 
 class Node:
@@ -116,7 +125,11 @@ trees = [None] * n_estimators
 for i in range(n_estimators): 
     trees[i] = Node(0, train)
     break
+    
 
-# ---- Graphing Results ----
+for i, patient in enumerate(train):
+    pass
+
+# ---- Graphing Results ---- #
 plt.plot(X, Y)
 plt.show()
